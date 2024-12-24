@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply bg-white text-black dark:bg-gray-900 dark:text-white;
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Yatay kaymayı engelle */
+}
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+footer {
+  min-height: 200px; /* Sabit bir yükseklik */
+}
+
+html.light {
+    --tw-bg-opacity: 1;
+    background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
+  }
+  
+  html.dark {
+    --tw-bg-opacity: 1;
+    background-color: rgba(31, 41, 55, var(--tw-bg-opacity)); /* Gray 800 */
+  }
+
+
+/* Add this to your global CSS or inside a <style> tag in the component */
+/* Add this to your global CSS or inside a <style> tag in the component */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll-left 20s linear infinite; /* Adjust speed as necessary */
+}
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
+    }
+}
