@@ -6,12 +6,13 @@ import { Readable } from "stream";
 import { IncomingMessage } from "http";
 import Category from "@/lib/models/Category";
 
-export const config = {
+/* export const config = {
   api: {
     bodyParser: false, // Disable default body parsing
   },
-};
-
+}; */
+export const runtime = 'nodejs';
+export const bodyParser = false;
 const s3 = new S3Client({
   region: process.env.AWS_REGION!,
   credentials: {
