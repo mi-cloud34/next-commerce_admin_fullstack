@@ -8,11 +8,13 @@ import mongoose from "mongoose";
 import Product from "@/lib/models/Product";
 import { ObjectId } from "mongodb";
 
-export const config = {
+/* export const config = {
   api: {
     bodyParser: false, // Disable default body parsing
   },
-};
+}; */
+export const runtime = 'nodejs';
+export const bodyParser = false;
 
 // AWS S3 v3 Client
 const s3 = new S3Client({
