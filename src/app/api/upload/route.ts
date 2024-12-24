@@ -7,11 +7,8 @@ import Product from "@/lib/models/Product";
 import { Readable } from "stream";
 import { ObjectId } from "mongodb";
 
-export const config = {
-  api: {
-    bodyParser: false, // formidable kullanmak için devre dışı bırakıyoruz
-  },
-};
+export const runtime = 'nodejs';
+export const bodyParser = false;
 
 // AWS S3'e dosya yükleme fonksiyonu
 const uploadFileToS3 = async (file: File): Promise<string> => {
