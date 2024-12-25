@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ModeToggle } from "../../ModelTogle";
 import { AppDispatch, RootState } from "@/redux";
 import { setIsDarkMode, setIsSidebarCollapsed } from "@/redux/Features/adminSlice";
 
@@ -60,7 +59,7 @@ const Navbar = () => {
               )}
             </button>
           </div> */}
-          <ModeToggle/>
+         
           <div className="relative">
             <Bell className="cursor-pointer text-gray-500" size={24} />
             <span className="absolute -top-2 -right-2 inline-flex items-center justify-center px-[0.4rem] py-1 text-xs font-semibold leading-none text-red-100 bg-red-400 rounded-full">
