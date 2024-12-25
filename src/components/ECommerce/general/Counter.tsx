@@ -1,7 +1,6 @@
-import { CardProductProps } from "../detail/DetailClient";
 
 interface CounterProps {
-    cardProduct : CardProductProps,
+    cardProduct : ProductType,
     increaseFunc: () =>  void;
     decreaseFunc: () =>  void;
 }
@@ -11,7 +10,7 @@ const Counter:React.FC<CounterProps> = ({cardProduct, increaseFunc, decreaseFunc
   return (
     <div className="flex items-center gap-2">
         <div className={buttonStyle} onClick={decreaseFunc}>-</div>
-        <div className="text-lg md:text-xl">{cardProduct?.quantity}</div>
+        <div className="text-lg md:text-xl">{cardProduct?.inStock}</div>
         <div className={buttonStyle} onClick={increaseFunc}>+</div>
     </div>
   )

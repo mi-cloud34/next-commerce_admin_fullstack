@@ -44,7 +44,7 @@ const LoginClient =  () =>{
     } = useForm<FieldValues>()
 
     const onSubmit: SubmitHandler<FieldValues> =async (data) =>{
- /*   await  axios.post('/api/users/login', data).then((res) => {
+    await  axios.post('/api/users/login', data).then((res) => {
            
          console.log("dataaaa",res);
          
@@ -55,8 +55,8 @@ const LoginClient =  () =>{
           }
       }).catch((e)=>{
          toast.error(e);
-      })  */
-          signIn('credentials', {
+      })  
+        /*   signIn('credentials', {
           ...data,
           redirect: false
       }).then((callback) => {
@@ -69,7 +69,7 @@ const LoginClient =  () =>{
           if(callback?.error){
               toast.error(callback.error)
           }
-      }) 
+      })  */
     }
   
     const handleGoogleSignIn = async () => {
