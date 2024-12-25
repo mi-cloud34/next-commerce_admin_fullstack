@@ -8,9 +8,11 @@ const nextConfig = {
         }, 
     ];
 }, */
+
 /* experimental: {
   missingSuspenseWithCSRBailout: false,
 }, */
+productionBrowserSourceMaps: true,
   images: {
     remotePatterns: [
       {
