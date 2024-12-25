@@ -1,3 +1,5 @@
+"use client"
+
 const BestSellingProducts = ({ products }:any) => {
   return (
     <table className="table-auto w-full">

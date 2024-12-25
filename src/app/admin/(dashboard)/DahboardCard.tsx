@@ -1,3 +1,5 @@
+"use client";
+
 type DashboardCardProps = {
   title: string;
   value: string | number;

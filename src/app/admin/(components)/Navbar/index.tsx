@@ -1,20 +1,20 @@
 "use client";
-import { setIsDarkMode, setIsSidebarCollapsed } from "@/app/admin/state/adminSlice";
 
 import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../reduxe";
 import { ModeToggle } from "../../ModelTogle";
+import { AppDispatch, RootState } from "@/redux";
+import { setIsDarkMode, setIsSidebarCollapsed } from "@/redux/Features/adminSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isSidebarCollapsed = useSelector(
-    (state:RootState) => state.admin.isSidebarCollapsed
+    (state:RootState) => state.global.isSidebarCollapsed
   );
-  const isDarkMode = useSelector((state:RootState) => state.admin.isDarkMode);
+  const isDarkMode = useSelector((state:RootState) => state.global.isDarkMode);
 
   const toggleSidebar = () => {
     dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));

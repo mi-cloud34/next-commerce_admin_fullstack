@@ -1,7 +1,7 @@
 "use client";
 
 
-import { setIsSidebarCollapsed } from "@/app/admin/state/adminSlice";
+
 import {
   Archive,
   CircleDollarSign,
@@ -17,7 +17,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../reduxe";
+
+import { setIsSidebarCollapsed } from "@/redux/Features/adminSlice";
+import { AppDispatch, RootState } from "@/redux";
 
 interface SidebarLinkProps {
   href: string;
@@ -64,7 +66,7 @@ const SidebarLink = ({
 const Sidebar = () => {
   const dispatch = useDispatch<AppDispatch>();
   const isSidebarCollapsed = useSelector(
-    (state:RootState) => state.admin.isSidebarCollapsed
+    (state:RootState) =>   state.global.isSidebarCollapsed
   );
 
   const toggleSidebar = () => {

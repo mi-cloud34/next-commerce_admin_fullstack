@@ -7,22 +7,22 @@ export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
 
   // Eğer session yoksa ana sayfaya yönlendir
-  if (!token) {
+/*   if (!token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-
+ */
   // Token varsa isAdmin durumunu kontrol et
-  const isAdmin = token.isAdmin;
-
+ /*  const isAdmin = token.isAdmin;
+ */
   // Eğer kullanıcı admin değilse /admin sayfasına yönlendirme
-  if (!isAdmin && request.nextUrl.pathname === "/admin") {
+/*   if (!isAdmin && request.nextUrl.pathname === "/admin") {
     return NextResponse.redirect(new URL("/", request.url));
-  }
+  } */
 
   // Aksi durumda isteğe izin ver
   return NextResponse.next();
 }
 
-export const config = {
+/* export const config = {
   matcher: ["/admin"], // Yalnızca /admin yolunu hedefle
-};
+}; */

@@ -6,7 +6,7 @@ import {
   useSelector,
   Provider,
 } from "react-redux";
-import globalReducer from "@/app/admin/state/adminSlice";
+import globalReducer from "./redux/Features/adminSlice";
 
 import {
   persistStore,

@@ -1,12 +1,12 @@
 
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
-import globalSlice from "../app/admin/state/adminSlice";
 import productSlice from "./Features/productSlice";
 import loadingSlice from "./Features/loadingSlice";
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./Features/cartSlice";
 import languageSlice from "./Features/languageSlice";
 import userSlice from "./Features/userSlice";
+import { adminSlice } from "./Features/adminSlice";
 
 // Redux store'unuzu yapılandırın
 export const store = configureStore({
@@ -15,7 +15,8 @@ export const store = configureStore({
     productSlice,
     loadingSlice,
     language: languageSlice,
-    user:userSlice
+    user:userSlice,
+   
   },
   devTools:process.env.NODE_ENV!=="production",
 });

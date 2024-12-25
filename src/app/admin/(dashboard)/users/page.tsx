@@ -2,7 +2,6 @@
 
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Header from "../../(components)/Header";
-import { User } from "../../data";
 
 const columns: GridColDef[] = [
   { field: "userId", headerName: "ID", width: 90 },
@@ -15,11 +14,19 @@ const Users = () => {
   const isLoading = false;
   const isError=false;
  
-  const users:User={
-    userId:"",
-    email:"",
-    name:"",
-   
+  const users:UserType={
+    name: "",
+    email: "",
+    surname: "",
+    isAdmin: false,
+    password: "",
+    isVerified: false,
+    createdAt: "",
+    updatedAt: "",
+    forgotPasswordToken: "",
+    forgotPasswordTokenExpiry: new Date(),
+    verifyToken: "",
+    verifyTokenExpiry: new Date(),
   };
   if (isLoading) {
     return <div className="py-4">Loading...</div>;

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Global State türü
-interface GlobalState {
+export interface GlobalState {
   isSidebarCollapsed: boolean;
   isDarkMode: boolean;
 }
@@ -14,7 +14,7 @@ const initialState: GlobalState = {
 
 // Redux slice
 export const adminSlice = createSlice({
-  name: 'admin',
+  name: 'global',
   initialState,
   reducers: {
     setIsSidebarCollapsed: (state, action: PayloadAction<boolean>) => {
@@ -26,6 +26,6 @@ export const adminSlice = createSlice({
   },
 });
 
-// Export reducer ve action
+// Export actionlar ve reducer
 export const { setIsSidebarCollapsed, setIsDarkMode } = adminSlice.actions;
 export default adminSlice.reducer;

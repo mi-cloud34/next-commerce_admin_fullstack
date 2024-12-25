@@ -4,15 +4,14 @@ import React, { useEffect } from "react";
 import Sidebar from "./(components)/Sidebar";
 import Navbar from "./(components)/Navbar";
 import { Provider, useSelector } from "react-redux";
-import { RootState } from "./reduxe";
-import adminStore from "./adminStore";
-
+import { RootState } from "@/redux";
+import adminStore from "@/redux/adminStore";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const isSidebarCollapsed = useSelector(
-    (state:RootState) => state.admin.isSidebarCollapsed
+    (state:RootState) => state.global.isSidebarCollapsed
   );
-  const isDarkMode = useSelector((state:RootState) => state.admin.isDarkMode);
+  const isDarkMode = useSelector((state:RootState) => state.global.isDarkMode);
 
   useEffect(() => {
     if (isDarkMode) {
