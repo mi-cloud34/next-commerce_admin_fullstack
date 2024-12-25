@@ -9,6 +9,7 @@ import Ap from "./App";
 
 import Footer from "@/components/ECommerce/Footer";
 import { ThemeProvider } from "./ThemeProvider";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,16 +26,14 @@ export default function RootLayout({
     
     <html lang="en">
       <body className={inter.className}>
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+      <Toaster
+            position="top-right"
+            reverseOrder={false}
+          />
      <AuthProvider><Ap >
      
       <div>{children}</div></Ap></AuthProvider> 
-      </ThemeProvider>
+      
       </body>
     </html>
   
