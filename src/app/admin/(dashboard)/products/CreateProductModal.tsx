@@ -21,7 +21,7 @@ type Category = {
 type CreateProductModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  mode: "create" | "update";
+  mode:string;
   initialData: ProductType;
   onChange: () => void;
 };

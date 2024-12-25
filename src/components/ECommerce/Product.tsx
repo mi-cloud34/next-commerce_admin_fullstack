@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import ProductCard from "./ProductCard";
 import Heading from "./general/Heading";
@@ -13,7 +13,7 @@ const Products = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
       const queryParams = new URLSearchParams();
@@ -27,11 +27,11 @@ const Products = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [categoryId, search]);
 
   useEffect(() => {
     fetchProducts();
-  }, [categoryId, search]);
+  }, [fetchProducts]);
 
   const getAnimationClass = (index: number) => {
     if (index % 3 === 0) return "animate-slideInLeft"; // Sol

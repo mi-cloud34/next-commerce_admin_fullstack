@@ -43,7 +43,7 @@ const RegisterClient:React.FC<RegisterClientProps> = ({currentUser}) => {
            if(currentUser){
             router.push('/admin/dashboard/')
             router.refresh();
-           }},[currentUser]);
+           }},[currentUser,router]);
   return (
     <AuthContainer>
          <div className="w-full md:w-[500px] p-3 shadow-lg rounded-md">

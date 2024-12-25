@@ -2,7 +2,7 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Header from "../../(components)/Header";
 import { DeleteIcon, EditIcon, PlusCircleIcon, SearchIcon } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CreateCategoryModal from "./CreateCategoryModal";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import axios from "axios";
@@ -16,52 +16,51 @@ import Image from "next/image";
 const Category = () => {
 
 
-  const isLoading=false;
-  const isError=false;
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [allData,setallData]=useState([])
-  const [query,setQuery]=useState<string>("")
-  const fetchProducts = async () => {
+  const [allData, setAllData] = useState<CategoryType[]>([]);
+  const [query, setQuery] = useState<string>("");
+
+  const fetchCategories = async () => {
     try {
       const response = await axios.get("/api/get_category"); // API endpoint
       setCategories(response.data);
       setLoading(false);
-      setallData(response.data);
+      setAllData(response.data);
     } catch (err) {
-      //setError("Ürünler yüklenirken bir hata oluştu.");
+      setError("Ürünler yüklenirken bir hata oluştu.");
       setLoading(false);
     }
   };
 
   useEffect(() => {
-
-    fetchProducts();
+    fetchCategories();
   }, []);
-  
-  const searchData=(query:string)=>{
-    let filteredData=categories;
-    if (query) {
-      filteredData=categories.filter(
-        u=>u.name.toLowerCase().includes(query.toLowerCase())
-           
-      );
-      setCategories(filteredData)
-    }
-   else{
-    setallData(allData);
-   }
-  }
-  useEffect(()=>{searchData(query)},[query])
+
+  const searchData = useCallback(
+    (query: string) => {
+      let filteredData = allData; // Orijinal tüm veriler
+      if (query) {
+        filteredData = allData.filter((u) =>
+          u.name.toLowerCase().includes(query.toLowerCase())
+        );
+      }
+      setCategories(filteredData); // Filtrelenmiş veya orijinal veriyi güncelle
+    },
+    [allData] // `allData` değiştiğinde fonksiyon yeniden oluşturulacak
+  );
+
+  useEffect(() => {
+    searchData(query);
+  }, [query, searchData]);
+
   if (loading) return <div>Yükleniyor...</div>;
   if (error) return <div>{error}</div>;
 
-   if (isLoading) {
-    return <div className="py-4">Loading...</div>;
-  }
+  
   const deleteCategory = async (id:string) => {
     try {
       const response = await axios.delete(`/api/delete_category/${id}`); // API endpoint

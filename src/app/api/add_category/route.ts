@@ -12,7 +12,6 @@ import Category from "@/lib/models/Category";
   },
 }; */
 export const runtime = 'nodejs';
-export const bodyParser = false;
 const s3 = new S3Client({
   region: process.env.AWS_REGION!,
   credentials: {

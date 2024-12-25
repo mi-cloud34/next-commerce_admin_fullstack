@@ -8,7 +8,7 @@ import { Readable } from "stream";
 import { ObjectId } from "mongodb";
 
 export const runtime = 'nodejs';
-export const bodyParser = false;
+//export const bodyParser = false;
 
 // AWS S3'e dosya yükleme fonksiyonu
 const uploadFileToS3 = async (file: File): Promise<string> => {
@@ -39,13 +39,7 @@ const toIncomingMessage = (req: NextRequest): NodeJS.ReadableStream => {
   return Object.assign(readable, req);
 };
 
-export default async function handler(req: NextRequest) {
-  if (req.method !== "POST") {
-    return NextResponse.json(
-      { message: "Method not allowed" },
-      { status: 405 }
-    );
-  }
+export async function POST(req: NextRequest) {
 
   const form = new formidable.IncomingForm();
 

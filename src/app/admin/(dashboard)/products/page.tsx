@@ -197,7 +197,7 @@ const handleUpdate = (product: ProductType) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         mode={mode}
-        initialData={initialData}
+        initialData={initialData!}
         onChange={handleProductChange}
       />
     </div>

@@ -56,11 +56,12 @@ export default function AccountPage() {
         <div className="bg-white shadow-lg rounded-lg p-6">
           <div className="flex flex-col items-center space-y-4">
             <div className="relative">
-              <img
+             <div className='rounded-full border-4 border-blue-500'><Image
                 src="/profil.png"
                 alt="Profile"
-                className="w-28 h-28 rounded-full border-4 border-blue-500"
-              />
+                width={28} height={28}
+                
+              /></div> 
               <input
                 type="file"
                 accept="image/*"
@@ -119,12 +120,15 @@ export default function AccountPage() {
               <div
                 key={product.id}
                 className="flex flex-col items-center p-4 border rounded-lg shadow-sm bg-gray-50 hover:shadow-lg transition-shadow">
+                <div  className=" rounded-md border mb-3">
                 <Image
                   src={product.image}
                   alt={product.name}
-                  className=" rounded-md border mb-3"
+                 
                   width={20} height={20}
                 />
+                  </div>
+                  
                 <h4 className="text-lg font-medium text-center text-gray-700">{product.name}</h4>
                 <p className="text-md text-gray-500">{product.price}</p>
               </div>

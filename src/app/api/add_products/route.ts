@@ -14,7 +14,7 @@ import { ObjectId } from "mongodb";
   },
 }; */
 export const runtime = 'nodejs';
-export const bodyParser = false;
+//export const bodyParser = false;
 
 // AWS S3 v3 Client
 const s3 = new S3Client({
