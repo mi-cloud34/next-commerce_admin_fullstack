@@ -42,7 +42,7 @@ const DetailClient = ({product}: {product: ProductType}) => {
     if(controlDisplay > -1){
         setDisplayButton(true)
     }
-},[cartPrdcts])
+},[cartPrdcts,displayButton])
     const increaseFunc = () => {
        if(cardProduct.inStock == 10) return
        setCardProduct(prev => ({...prev, quantity: prev.inStock + 1 }))

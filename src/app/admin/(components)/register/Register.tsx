@@ -11,8 +11,7 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import axios from "axios"
 import Heading from "@/app/(ecommerce)/components/general/Heading"
-import AuthContainer from "@/components/AdminPanel/container/AuthContainer"
-
+import AuthContainer from "@/app/(ecommerce)/components/containers/AuthContainer"
 interface RegisterClientProps{
     currentUser?: User | null | undefined
   }
@@ -44,7 +43,7 @@ const RegisterClient:React.FC<RegisterClientProps> = ({currentUser}) => {
            if(currentUser){
             router.push('/admin/dashboard/')
             router.refresh();
-           }},[]);
+           }},[currentUser]);
   return (
     <AuthContainer>
          <div className="w-full md:w-[500px] p-3 shadow-lg rounded-md">
