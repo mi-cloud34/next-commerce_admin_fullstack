@@ -38,7 +38,7 @@ const DetailClient = ({product}: {product: ProductType}) => {
   
   useEffect(() => {
     setDisplayButton(false)
-    let controlDisplay: any = cartPrdcts?.findIndex(cart => cart._id == product._id)
+    let controlDisplay: any =setDisplayButton(cartPrdcts.some(cart => cart._id === product._id));
     if(controlDisplay > -1){
         setDisplayButton(true)
     }
@@ -78,7 +78,8 @@ const DetailClient = ({product}: {product: ProductType}) => {
                      <Button text="Product avaliable in Basket" small outline onClick={() => {}}/>
                     </> : <>
                     <Counter increaseFunc={increaseFunc} decreaseFunc={decreaseFunc} cardProduct={cardProduct}/>
-                   <Button text="Add Basket" small onClick={() =>session? dispatch(addToBasket(cardProduct)):router.push("/login")}/>
+                   <Button text="Add Basket" small onClick={()=> dispatch(addToBasket(product))}/>
+                   {/* <Button text="Add Basket" small onClick={() =>session? dispatch(addToBasket(cardProduct)):router.push("/login")}/> */}
                     </>
                 } </div>  </div>
              <Heading text="Comments"/>

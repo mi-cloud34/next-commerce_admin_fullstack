@@ -1,17 +1,22 @@
-
 "use client"
 import { store } from "@/redux/store";
 //import StoreProvider from "@/redux";
 import React from "react"
 import { Provider } from "react-redux";
-const Ap=({children}:{children:React.ReactNode})=>{
+const App=({children}:{children:React.ReactNode})=>{
     return  <Provider store={store}>{children}</Provider>
 
-   /*  <StoreProvider>
+  
+    
+};
+export default App;
+
+
+
+
+
+ /*  <StoreProvider>
          
          {children}
         
         </StoreProvider> */
-    
-};
-export default Ap;

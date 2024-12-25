@@ -141,7 +141,7 @@ const handleUpdate = (product: ProductType) => {
             >
               <div className="flex flex-col items-center">
                 <Image
-                 src="/flags/en.jpg"
+                 src=""
                   alt={product.name}
                   width="300" height="400"
                   

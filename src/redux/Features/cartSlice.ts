@@ -1,11 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+type ProductTyper = {
+  _id: string;
+  name: string;
+  description: string;
+  imgUrls: [string];
+  inStock: number;
+  categoryId: CategoryType;
+  price: number;
+  brand: string;
+  rating: number;
+  colors: [string];
+  createdAt: string;
+  updatedAt: string;
+  reviews: [ReviewType];
+};
+
 
 
 interface CartState {
   productCartQty: number;
-  cartPrdcts: ProductType[] | null;
+  cartPrdcts: ProductTyper[];
 }
+
 const getInitialCartState = (): CartState => {
   if (typeof window !== 'undefined') {
     const savedCart = localStorage.getItem('cart');
@@ -15,9 +32,10 @@ const getInitialCartState = (): CartState => {
   }
   return {
     productCartQty: 0,
-    cartPrdcts: [],
+    cartPrdcts: [], 
   };
 };
+
 const initialState: CartState = getInitialCartState();
 
 const saveCartToLocalStorage = (state: CartState) => {
@@ -28,18 +46,43 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    setCartPrdcts: (state, action: PayloadAction<ProductType[] | null>) => {
+    setCartPrdcts: (state, action: PayloadAction<ProductType[]>) => {
       state.cartPrdcts = action.payload;
       saveCartToLocalStorage(state);
     },
-    addToBasket: (state, action: PayloadAction<ProductType>) => {
-      if (state.cartPrdcts) {
-        state.cartPrdcts.push(action.payload);
-      } else {
-        state.cartPrdcts = [action.payload];
+    addToBasket: (state, action: PayloadAction<ProductTyper>) => {
+    
+        
+        const index = state.cartPrdcts.findIndex(cart => cart._id === action.payload._id);
+        if (index > -1) {
+          // Sepette ürün varsa, adeti 1 arttır
+         state.cartPrdcts[index].inStock += 1;
+       
+        }
+       
+      
+      else {
+        // Eğer sepette hiç ürün yoksa, yeni ürün ekle
+        state.cartPrdcts.push({ ...action.payload, inStock: 1 });
       }
+      // LocalStorage'a kaydet
       saveCartToLocalStorage(state);
     },
+    
+       /*  const index = state.cartPrdcts.findIndex(item => item._id === action.payload._id);
+        if (index !== -1) {
+          state.cartPrdcts[index] = {
+            ...state.cartPrdcts[index],
+            inStock: state.cartPrdcts[index]!.inStock + 1,
+          };
+        }
+        //state.cartPrdcts.push(action.payload);
+        else {
+         // state.cartPrdcts = [action.payload];
+          state.cartPrdcts!.push(action.payload)
+        } */
+      
+     
     addToBasketIncrease: (state, action: PayloadAction<ProductType>) => {
       if (state.cartPrdcts) {
         const index = state.cartPrdcts.findIndex(item => item._id === action.payload._id);
@@ -65,7 +108,7 @@ const cartSlice = createSlice({
       saveCartToLocalStorage(state);
     },
     removeCart: (state) => {
-      state.cartPrdcts = null;
+      state.cartPrdcts = [];
       saveCartToLocalStorage(state);
     },
     setProductCartQty: (state) => {
