@@ -54,7 +54,7 @@ const LoginClient:React.FC<LoginClientProps> =  ({currentUser}) =>{
         router.push('/admin/dashboard/')
         router.refresh();
        }
-    }, [currentUser])
+    }, [])
     return   <AuthContainer>
     <div className="w-full md:w-[500px] p-3 shadow-lg rounded-md">
          <Heading text="Login" center/>

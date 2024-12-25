@@ -31,7 +31,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [categoryId, search,products]);
+  }, [categoryId, search]);
 
   const getAnimationClass = (index: number) => {
     if (index % 3 === 0) return "animate-slideInLeft"; // Sol
