@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Image from 'next/image';
 
 export default function AccountPage() {
   const router = useRouter();
@@ -118,10 +119,11 @@ export default function AccountPage() {
               <div
                 key={product.id}
                 className="flex flex-col items-center p-4 border rounded-lg shadow-sm bg-gray-50 hover:shadow-lg transition-shadow">
-                <img
+                <Image
                   src={product.image}
                   alt={product.name}
-                  className="w-20 h-20 rounded-md border mb-3"
+                  className=" rounded-md border mb-3"
+                  width={20} height={20}
                 />
                 <h4 className="text-lg font-medium text-center text-gray-700">{product.name}</h4>
                 <p className="text-md text-gray-500">{product.price}</p>

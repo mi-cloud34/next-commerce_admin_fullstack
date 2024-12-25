@@ -84,8 +84,8 @@ const DetailClient = ({product}: {product: ProductType}) => {
              <Heading text="Comments"/>
              <div>
                 {
-                  product?.reviews?  product?.reviews?.map((prd: any) => (
-                        <Comment key={prd.id} prd={prd}/>
+                  product?.reviews?  product?.reviews?.map((prd: any,index) => (
+                        <Comment key={index} prd={prd}/>
                     )):<div>Ürüne ait yorm bulunmamakta</div>
                 }
              </div>

@@ -1,6 +1,7 @@
 "use client"
 import { removeFromCart, setProductCartQty } from '@/redux/Features/cartSlice';
 import { AppDispatch, RootState } from '@/redux/store';
+import Image from 'next/image';
 import React from 'react'
 import toast from 'react-hot-toast';
 import { RxCross1 } from 'react-icons/rx';
@@ -24,7 +25,7 @@ const CartProduct = ({products}:{products:ProductType[]}) => {
         {
             products.map((product, index) => (
                 <div key={index} className='flex items-center gap-4'>
-                    <img className='h-[80px]' src={product.imgUrls[0]} alt={product.name} />
+                    <Image height={80} width={80} src={product.imgUrls[0]} alt={product.name} />
                     <div className='space-y-2'>
                         <div>{product.name}</div>
                         <div>{product.price}</div>

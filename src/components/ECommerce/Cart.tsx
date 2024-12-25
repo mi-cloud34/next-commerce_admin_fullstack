@@ -30,8 +30,9 @@ const Cart = ({setShowCart}:CartProps) => {
             <h3 className='pt-6 text-lg font-medium text-gray-600 uppercase'>Your Cart</h3>
             <div className='mt-6 space-y-2'>
                 {
-                    products?.map((item)=>(
+                    products?.map((item,index)=>(
                         <CartProduct 
+                        key={item._id || index}
                        products={products}
                         />
                     ))

@@ -3,7 +3,6 @@
 import PageContainer from "../containers/PageContainer"
 import Image from "next/image"
 import Button from "../general/Button"
-import { CardProductProps } from "../detail/ProductDetail"
 import Counter from "../general/Counter"
 
 import { addToBasketDecrease, addToBasketIncrease, removeCart, removeFromCart } from "@/redux/Features/cartSlice"
@@ -20,7 +19,7 @@ const CartClient = () => {
         return <div>Sepetinizde ürün bulunmamaktadır...</div>
     }
 
-    let cartPrdctsTotal = cartPrdcts.reduce((acc: any, item:CardProductProps) => acc + item.quantity * item.price,0)
+    let cartPrdctsTotal = cartPrdcts.reduce((acc: any, item:ProductType) => acc + item.inStock * item.price,0)
   return (
     <div className="my-3 md:my-10">
         <PageContainer>
@@ -34,9 +33,9 @@ const CartClient = () => {
             <div>
                 {
                     cartPrdcts.map(cart => (
-                        <div className="flex items-center justify-between text-center my-5" key={cart.id}>
+                        <div className="flex items-center justify-between text-center my-5" key={cart._id}>
                             <div className="w-1/5 flex items-center justify-center">
-                               <Image src={cart.img} width={40} height={40} alt=""/>
+                               <Image src={cart.imgUrls[0]} width={40} height={40} alt=""/>
                             </div>
                             <div className="w-1/5">{cart.name}</div>
                             <div className="w-1/5 flex justify-center">

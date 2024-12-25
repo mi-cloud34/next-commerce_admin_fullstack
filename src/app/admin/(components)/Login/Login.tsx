@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation"
 import { useEffect } from "react"
 import axios from "axios"
 import Heading from "@/app/(ecommerce)/components/general/Heading"
-import AuthContainer from "@/components/AdminPanel/container/AuthContainer"
 import Input from "@/components/ECommerce/general/Input"
 import Button from "@/components/ECommerce/general/Button"
+import AuthContainer from "@/app/(ecommerce)/components/containers/AuthContainer"
 interface LoginClientProps{
     currentUser?: User | null | undefined
   }
@@ -54,7 +54,7 @@ const LoginClient:React.FC<LoginClientProps> =  ({currentUser}) =>{
         router.push('/admin/dashboard/')
         router.refresh();
        }
-    }, [])
+    }, [currentUser])
     return   <AuthContainer>
     <div className="w-full md:w-[500px] p-3 shadow-lg rounded-md">
          <Heading text="Login" center/>

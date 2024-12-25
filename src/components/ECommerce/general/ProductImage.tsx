@@ -43,17 +43,15 @@ const ProductImages = () => {
   <CarouselContent>
     {imgs?.map((image, index)=>(
 
-        <CarouselItem>
-             <img
+        <CarouselItem key={index}>
+             <Image
                 width={500}  // Fixed width
                 height={600}  
+                src={String(image)}
               alt='alt'
             
              
-              src={
-               
-                image
-              }
+             
               className='rounded-3xl scale-95 w-full group-hover:scale-100 transition-all duration-700'
             />
 

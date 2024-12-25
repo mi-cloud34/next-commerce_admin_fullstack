@@ -93,22 +93,23 @@ const NavBar = ({ setShowCart }: PropsType) => {
         <div className="relative">
       {/* Seçili bayrağın gösterilmesi */}
       <div onClick={() => setIsOpen(!isOpen)} className="cursor-pointer">
-        <img src={selectedFlag} alt="Flag" style={{ width: '30px', height: '20px' }} />
+        <Image src={selectedFlag} alt="Flag" width={30} height={20} />
       </div>
 
       {/* Menü açıldığında diğer bayrakların gösterilmesi */}
       {isOpen && (
         <div className="flex flex-col absolute top-8 -right-10">
-          {languages.map((language) => (
+          {languages.map((language,index) => (
             <button 
-              key={language.locale} 
+              key={index} 
               onClick={() => handleLanguageChange(language.locale, language.flag)} 
               className="flex items-center space-x-2 p-2"
             >
-              <img 
+              <Image
                 src={language.flag} 
                 alt={`${language.name} Flag`} 
-                style={{ width: '30px', height: '20px' }} 
+               width={30}
+               height={20}
               />
               <span>{language.name}</span>
             </button>
@@ -132,10 +133,12 @@ const NavBar = ({ setShowCart }: PropsType) => {
               Login
             </button>
           ) : (
-            <img
+            <Image
               src="/profil.png"
               alt="User"
-              className="w-10 h-10 rounded-full cursor-pointer"
+              width={10}
+              height={10}
+              className=" rounded-full cursor-pointer"
               onClick={() => setiSMenuOpen(!isMenuOpe)}
             />
           )}
@@ -186,11 +189,13 @@ const NavBar = ({ setShowCart }: PropsType) => {
             </button>
           ) : (
             <div onClick={()=>router.push("/account")} className="flex items-center space-x-3">
-              <img 
+              <Image 
 
                 src="/profil.png"
                 alt="User"
-                className="w-10 h-10 rounded-full bg-blue-900"
+                height={10}
+                width={10}
+                className=" rounded-full bg-blue-900"
               />
             </div>
           )}
@@ -234,10 +239,12 @@ const NavBar = ({ setShowCart }: PropsType) => {
             </button>
           ) : (
             <div className="flex items-center space-x-3">
-              <img
+              <Image
                 src="/profil.png"
                 alt="User"
-                className="w-10 h-10 rounded-full"
+                className=" rounded-full"
+                height={10}
+                width={10}
               />
             </div>
           )}
