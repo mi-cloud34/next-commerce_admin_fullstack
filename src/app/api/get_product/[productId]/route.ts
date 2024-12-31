@@ -7,13 +7,13 @@ import { NextResponse } from "next/server";
   try {
     await connectMongoDb();
     
-    const { productId } = params; // Dinamik URL'den productId alınıyor
-    console.log("iddd5555555555",mongoose.Types.ObjectId.isValid(productId)); // true ya da false döner
+    const { productId } = params; 
+    console.log("iddd5555555555",mongoose.Types.ObjectId.isValid(productId)); 
     if (!productId) {
       return NextResponse.json({ msg: "Product ID is required" }, { status: 400 });
     }
 
-    // MongoDB'den productId'ye göre ürünü getir
+   
     const product = await Product.find({_id: productId});
 
     if (!product) {

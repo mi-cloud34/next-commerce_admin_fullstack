@@ -4,12 +4,13 @@ import { Inter } from "next/font/google";
 import AuthProvider from "@/app/AuthProvider";
 import App from "./App";
 import "./globals.css";
-
 import Ap from "./App";
 
-import Footer from "@/components/ECommerce/Footer";
 import { ThemeProvider } from "./ThemeProvider";
 import { Toaster } from "react-hot-toast";
+import NavBar from "./(ecommerce)/components/Navbar";
+import Footer from "./(ecommerce)/components/Footer";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -25,14 +26,21 @@ export default function RootLayout({
   return (
     
     <html lang="en">
-      <body className={inter.className}>
+      <body className="min-h-screen flex flex-col">
       <Toaster
             position="top-right"
             reverseOrder={false}
           />
      <AuthProvider><Ap >
-     
-      <div>{children}</div></Ap></AuthProvider> 
+    
+     <div className="fixed top-0 left-0 w-full z-50 shadow-md">
+          <NavBar />
+        </div>
+      <div className="flex-grow mt-[64px]">{children}</div>
+      
+          <Footer />
+       
+      </Ap></AuthProvider> 
       
       </body>
     </html>

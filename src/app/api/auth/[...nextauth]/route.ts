@@ -38,15 +38,15 @@ const handler = NextAuth({
             throw new Error("Geçersiz şifre.");
           }
 
-          // MongoDB'deki `_id` alanını `id` olarak değiştirerek döndürün
+         
           return {
-            id: user._id.toString(), // `id` olarak dönüştürüldü
+            id: user._id.toString(), 
             name: user.name,
             email: user.email,
             surname: user.surname,
             isAdmin: user.isAdmin,
             isVerified: user.isVerified,
-            image: user.image || null, // Varsayılan olarak image ekleyin
+            image: user.image || null,
           };
           
         } catch (error) {

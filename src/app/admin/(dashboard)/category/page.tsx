@@ -38,7 +38,7 @@ const Category = () => {
 
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [categories]);
 
   const searchData = useCallback(
     (query: string) => {

@@ -11,18 +11,18 @@ export async function PUT(request: NextRequest) {
 
     console.log("body", body);
 
-    // Tüm gerekli alanların dolu olduğundan emin olun
+  
     if (!_id || !name ) {
       return NextResponse.json({ msg: "Missing required fields" }, { status: 400 });
     }
 
-    // `categoryId` ve `_id` değerlerini ObjectId olarak ayarlayın
+  
     const categoryObjectId = new ObjectId(_id);
   
-    // Veritabanına bağlan
+   
     await connectMongoDb();
 
-    // Güncelleme işlemi
+    
     const updatedCategory = await Category.findByIdAndUpdate(
       categoryObjectId,
       {

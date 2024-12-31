@@ -3,7 +3,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div className='bg-[#E3EDF6] mt-4'>
+    <div className=' mt-4'>
         <div className='container grid md:grid-cols-2 py-8'>
             <div className='flex items-center'>
                 <div className='max-w-[450px] space-y-4'>
@@ -22,7 +22,7 @@ const Hero = () => {
                 </div>
             </div>
             <div>
-                <Image className='ml-auto' src="/hero.jpg" alt="hero" width={500} height={500}/>
+                <Image className='ml-auto' src="/hero.jpg" alt="hero" width={300} height={300} />
             </div>
         </div>
     </div>

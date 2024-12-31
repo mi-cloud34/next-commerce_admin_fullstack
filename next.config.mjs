@@ -13,6 +13,9 @@ const nextConfig = {
   missingSuspenseWithCSRBailout: false,
 }, */
 productionBrowserSourceMaps: true,
+env: {
+  BASE_URL: process.env.BASE_URL,
+},
   images: {
     remotePatterns: [
       {

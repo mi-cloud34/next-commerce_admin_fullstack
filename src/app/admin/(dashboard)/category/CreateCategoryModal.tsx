@@ -46,7 +46,7 @@ const CreateProductModal = ({
           });
           console.log("Ürün başarıyla oluşturuldu:", response.data);
          toast.success("Created Succesfull Category");
-         
+         onClose();
         } catch (error:any) {
             const errorMessage =
    /*  error.response?.data?.message ||

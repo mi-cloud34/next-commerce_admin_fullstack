@@ -5,15 +5,15 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
-        const { email, verificationCode } = reqBody;
+        const {  verificationCode } = reqBody;
 
-        if (!email || !verificationCode) {
+        if (!verificationCode) {
             throw new Error("Lütfen tüm alanları doldurun.");
         }
 
         await connectMongoDb();
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ verificationCode });
         if (!user) {
             return NextResponse.json(
                 { error: "Kullanıcı bulunamadı" },
@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
         }
 
         user.isVerified = true;
-        user.verificationCode = null; // Doğrulama kodunu geçersiz yapıyoruz.
+        user.verificationCode = null; 
         await user.save();
 
         return NextResponse.json({

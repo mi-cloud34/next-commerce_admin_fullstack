@@ -41,7 +41,7 @@ const uploadFileToS3 = async (
 const convertNextRequestToIncomingMessage = async (
   req: NextRequest
 ): Promise<IncomingMessage> => {
-  const bodyBuffer = await req.arrayBuffer(); // Use arrayBuffer() for better handling
+  const bodyBuffer = await req.arrayBuffer(); 
   const readable = new Readable();
   readable._read = () => {};
   readable.push(Buffer.from(bodyBuffer));
@@ -75,8 +75,10 @@ export async function POST(req: NextRequest) {
     console.log("Parsed Files:", files);
 
     
-    const file = Array.isArray(files.file) ? files.file[0] : files.file;
- // Simplified to access single file directly
+    const fileArray = Array.isArray(files.file) ? files.file : [files.file];
+    const file = fileArray[0]; 
+    
+ 
 
     if (!file || !file.filepath || !file.originalFilename || !file.mimetype) {
       return NextResponse.json({ error: "Invalid file uploaded" }, { status: 400 });
@@ -110,34 +112,3 @@ export async function POST(req: NextRequest) {
   }
 }
 
-
-/* import Category from "@/lib/models/Category";
-import Product from "@/lib/models/Product";
-import { connectMongoDb } from "@/lib/MongoConnect";
-import { NextRequest, NextResponse } from "next/server";
-
-export async function POST(request:NextRequest){
-    try {
-        const body=await request.json();
-       
-       
-        const {name}=body;
-        await connectMongoDb();
-        const data=await Category.create({
-           name
-        })
-       
-        
-
-        console.log("data",data);
-        
-    return NextResponse.json({msg:"UpdateSuccessful",data})
-    } catch (error) {
-        return NextResponse.json({
-            error,
-            msg:"Something wrong"
-        },
-    {status:400}
-    )
-    }
-} */

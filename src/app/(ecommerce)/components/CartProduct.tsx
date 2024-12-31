@@ -1,12 +1,12 @@
 "use client";
 import { removeFromCart } from '@/redux/Features/cartSlice';
 import { AppDispatch } from '@/redux/store';
+import { useDispatch } from 'react-redux';
+
 import Image from 'next/image';
 import React from 'react';
 import toast from 'react-hot-toast';
 import { RxCross1 } from 'react-icons/rx';
-import { useDispatch } from 'react-redux';
-
 interface CartProductProps {
     product: ProductType; // Tekil ürün props'u
 }

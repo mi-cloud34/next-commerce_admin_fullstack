@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ürün Detayı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    p {
+      color: #555;
+      line-height: 1.6;
+    }
+    .product-list {
+      margin-top: 20px;
+      border-top: 1px solid #e1e1e1;
+      padding-top: 20px;
+    }
+    .product-item {
+      display: flex;
+      margin-bottom: 15px;
+      justify-content: space-between;
+    }
+    .product-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      margin-right: 15px;
+    }
+    .product-details {
+      flex: 1;
+    }
+    .product-name {
+      font-weight: bold;
+      color: #333;
+    }
+    .product-description {
+      color: #666;
+    }
+    .product-price {
+      font-size: 18px;
+      color: #333;
+      font-weight: bold;
+    }
+    .shipping-info {
+      margin-top: 20px;
+      border-top: 1px solid #e1e1e1;
+      padding-top: 20px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ürün Detayı - Siparişiniz Başarıyla Tamamlandı!</h1>
+
+    <p>Merhaba {{firstName}} {{lastName}},</p>
+    <p>Yapmış olduğunuz sipariş başarıyla alındı. Aşağıda siparişinizin detaylarını bulabilirsiniz:</p>
+
+    <div class="product-list">
+      {{#each products}}
+        <div class="product-item">
+          <img src="{{this.image}}" alt="{{this.name}}">
+          <div class="product-details">
+            <p class="product-name">{{this.name}}</p>
+            <p class="product-description">{{this.description}}</p>
+            <p class="product-price">{{this.price}} ₺</p>
+            <p>Adet: {{this.quantity}}</p>
+            <p>Renk: {{this.color}}</p>
+            <p>Boyut: {{this.size}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="shipping-info">
+      <h3>Gönderim Bilgileri:</h3>
+      <p><strong>Adres:</strong> {{shippingAddress.street}}, {{shippingAddress.city}}, {{shippingAddress.state}}, {{shippingAddress.postalCode}}, {{shippingAddress.country}}</p>
+      <p><strong>Toplam Tutar:</strong> {{totalAmount}} ₺</p>
+      <p><strong>Alış Tarihi:</strong> {{orderDate}}</p>
+    </div>
+
+    <div class="footer">
+      <p>Bu e-posta, {{companyName}} tarafından gönderilmiştir.</p>
+      <p>Bizimle iletişime geçmek için: <a href="mailto:{{supportEmail}}">{{supportEmail}}</a></p>
+    </div>
+  </div>
+</body>
+</html>

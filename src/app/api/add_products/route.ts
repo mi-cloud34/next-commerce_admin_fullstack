@@ -25,7 +25,7 @@ const s3 = new S3Client({
     },
   });
   
-  // Helper to upload a file to S3
+
   const uploadFileToS3 = async (folder:string,filePath: string, fileName: string, contentType: string): Promise<string> => {
     const fileContent = await fs.readFile(filePath);
     const command = new PutObjectCommand({
@@ -38,8 +38,7 @@ const s3 = new S3Client({
     await s3.send(command);
     return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${folder}/${Date.now()}`;
   };
-// Convert NextRequest to IncomingMessage
-// Helper function to convert ReadableStream to Buffer
+
 const streamToBuffer = async (stream: ReadableStream): Promise<Buffer> => {
     const reader = stream.getReader();
     const chunks: Uint8Array[] = [];
@@ -56,9 +55,9 @@ const streamToBuffer = async (stream: ReadableStream): Promise<Buffer> => {
     return Buffer.concat(chunks);
   };
   
-  // Modify convertNextRequestToIncomingMessage
+
   const convertNextRequestToIncomingMessage = async (req: NextRequest): Promise<IncomingMessage> => {
-    const bodyBuffer = await streamToBuffer(req.body!); // Convert ReadableStream to Buffer
+    const bodyBuffer = await streamToBuffer(req.body!); 
   
     const readable = new Readable();
     readable._read = () => {};
@@ -110,7 +109,7 @@ export async function POST(req: NextRequest) {
 
     let categoryObjectId:any;
     if (Array.isArray(categoryId)) {
-        categoryObjectId = new ObjectId(categoryId[0]); // İlk öğeyi al
+        categoryObjectId = new ObjectId(categoryId[0]);
       } else {
         categoryObjectId = new ObjectId(categoryId);
       }
@@ -131,42 +130,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
-
-
-/* import Product from "@/lib/models/Product";
-import { connectMongoDb } from "@/lib/MongoConnect";
-import { NextRequest, NextResponse } from "next/server";
-import { ObjectId } from "mongodb";
-export async function POST(request:NextRequest){
-    try {
-        const body=await request.json();
-        const {name,description,categoryId,brand,price,inStock,rating}=body;
-        console.log("body",body);
-        
-        if (!name || !description || !categoryId || !brand || !price || !inStock || !rating) {
-            return NextResponse.json({ msg: "Missing required fields" }, { status: 400 });
-          }
-      
-          // Ensure categoryId is treated as an ObjectId
-          const categoryObjectId = new ObjectId(categoryId);
-      
-        
-        await connectMongoDb();
-        const data=await Product.create({
-            name,description, categoryId: categoryObjectId,brand,price,inStock,rating
-        })
-       
-        
-
-        console.log("data",data);
-        
-    return NextResponse.json({msg:"UpdateSuccessful",data})
-    } catch (error) {
-        return NextResponse.json({
-            error,
-            msg:"Something wrong"
-        },
-    {status:400}
-    )
-    }
-} */

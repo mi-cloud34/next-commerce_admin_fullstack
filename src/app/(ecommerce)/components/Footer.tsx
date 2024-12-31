@@ -1,8 +1,17 @@
+"use client"
 import Link from "next/link";
-
+import { motion } from "framer-motion";
 const Footer = () => {
   return (
-    <footer className="bg-blue-600 text-white py-12">
+    <motion.div
+    //initial={{ opacity: 0, y: 100 }}
+    animate={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+    transition={{ duration: 1.5, ease: "easeInOut" }}
+  >
+    <footer className="bg-blue-600 text-white  p-2">
       <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
         {/* Logo and Description */}
         <div>
@@ -105,6 +114,7 @@ const Footer = () => {
         </p>
       </div>
     </footer>
+    </motion.div>
   );
 };
 

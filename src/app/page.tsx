@@ -2,11 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Hero from "@/components/ECommerce/Hero";
-import Category from "@/components/ECommerce/Category";
-import Products from "@/components/ECommerce/Product";
-import Footer from "@/components/ECommerce/Footer";
-import NavBar from "@/components/ECommerce/Navbar";
+import Hero from "./(ecommerce)/components/Hero";
+import Category from "./(ecommerce)/components/Category";
+import Products from "./(ecommerce)/components/Product";
 
 export default function Home() {
   const [showCart, setShowCart] = useState(false);
@@ -59,14 +57,14 @@ export default function Home() {
   return (
     <>
       {/* Navbar Sabit */}
-      <motion.div
+     {/*  <motion.div
         className=" top-0 left-0 w-full z-150 shadow-md"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeInOut" }}
       >
         <NavBar setShowCart={setShowCart} />
-      </motion.div>
+      </motion.div> */}
 
       {/* Ana İçerik */}
       <main className="pt-[80px] pb-[100px] pl-10 pr-10 space-y-10">
@@ -112,7 +110,7 @@ export default function Home() {
 
       {/* Footer */}
     {/* Footer */}
-<div ref={footerRef} style={{ minHeight: "200px" }}> {/* Sabit bir yükseklik belirleyin */}
+{/* <div ref={footerRef} style={{ minHeight: "200px" }}>
   {isFooterVisible ? (
     <motion.div
       initial={{ opacity: 0, y: 100 }}
@@ -122,11 +120,11 @@ export default function Home() {
       <Footer />
     </motion.div>
   ) : (
-    <div className="animate-pulse bg-gray-200 h-full"> {/* Placeholder */}
+    <div className="animate-pulse bg-gray-200 h-full"> 
       Loading footer...
     </div>
   )}
-</div>
+</div> */}
     </>
   );
 }

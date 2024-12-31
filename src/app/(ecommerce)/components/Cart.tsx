@@ -5,12 +5,14 @@ import CartProduct from './CartProduct';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/redux/store';
 import { Dispatch, SetStateAction } from "react";
+import { useRouter } from 'next/navigation';
 
 interface CartProps {
-    setShowCart: Dispatch<SetStateAction<boolean>>;
+    setShowCart?: Dispatch<SetStateAction<boolean>>;
 }
 
-const Cart = ({ setShowCart }: CartProps) => {
+const CartClient = ({ setShowCart }: CartProps) => {
+  const router=useRouter()
     const products = useSelector((state: RootState) => state.cart.cartPrdcts);
 
     const getTotal = () => {
@@ -18,7 +20,7 @@ const Cart = ({ setShowCart }: CartProps) => {
     };
 
     const handleCartClick = () => {
-        setShowCart(false); // Sepeti kapatma fonksiyonu
+        setShowCart!(false); // Sepeti kapatma fonksiyonu
     };
 
     return (
@@ -43,7 +45,7 @@ const Cart = ({ setShowCart }: CartProps) => {
                     <p>Total:</p>
                     <p>${getTotal()}.00</p>
                 </div>
-                <button className='bg-black text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4'>
+                <button onClick={()=>router.push("/cart")} className='bg-black text-white text-center w-full rounded-3xl py-2 hover:bg-accent mb-4 mt-4'>
                     CheckOut
                 </button>
             </div>
@@ -51,4 +53,4 @@ const Cart = ({ setShowCart }: CartProps) => {
     );
 };
 
-export default Cart;
+export default CartClient;

@@ -2,11 +2,11 @@ import { NextApiRequest, NextApiResponse } from "next";
 import bcrypt from "bcryptjs";
 import { connectMongoDb } from "@/lib/MongoConnect";
 import User from "@/lib/models/User";
-import jwt from "jsonwebtoken";  // JWT oluşturmak için
-import { serialize } from "cookie";  // Cookie oluşturmak için
+import jwt from "jsonwebtoken";  
+import { serialize } from "cookie";  
 import { NextRequest, NextResponse } from "next/server";
 
-const SECRET_KEY = process.env.JWT_SECRET_KEY as string;  // JWT için gizli anahtar
+const SECRET_KEY = process.env.JWT_SECRET_KEY as string;  
 
 export  async function POST(req: NextRequest, res: NextResponse) {
     const reqBody = await req.json();
@@ -30,7 +30,7 @@ export  async function POST(req: NextRequest, res: NextResponse) {
         return NextResponse.json({error:"invalid  password",status:400});
     }
 
-    // JWT token oluşturuluyor
+   
     const token = jwt.sign(
       {
         id: user._id.toString(),
@@ -41,20 +41,39 @@ export  async function POST(req: NextRequest, res: NextResponse) {
         isVerified: user.isVerified,
       },
       SECRET_KEY,
-      { expiresIn: "1h" } // Token 1 saat geçerli olacak
+      { expiresIn: "1h" } 
     );
-
-    // Token'ı Cookie'ye kaydediyoruz
+    
+    
     const cookie = serialize("token", token, {
-      httpOnly: true,  // JavaScript erişimi yasakla
-      secure: process.env.NODE_ENV === "production",  // Prod ortamda sadece HTTPS üzerinden
-      sameSite: "strict",  // CSRF saldırılarını engellemek için
-      maxAge: 60 * 60,  // 1 saat geçerlilik
+      httpOnly: true,  
+      secure: process.env.NODE_ENV === "production",  
+      sameSite: "strict", 
+      maxAge: 60 * 60 * 24, 
       path: "/",
     });
-    const response = NextResponse.json({ message: "Successful" }, { status: 200 });
-    response.headers.set("Set-Cookie", cookie);
-    return NextResponse.json({message:"Successful",status:400});
+    
+     // Doğrulama kontrolü
+     if (!user.isVerified) {
+      return NextResponse.json(
+          {
+              message: "Hesabınız doğrulanmamış. Doğrulama sayfasına yönlendiriliyorsunuz.",
+              redirectTo: "/verify", 
+          },
+          { status: 403 }
+      );
+  }
+    const response = NextResponse.json(
+      {
+        data: user,
+        token: token,
+        message: "Login successful",
+        status: 200,
+      }
+    );
+response.headers.set("Set-Cookie", cookie);
+return response;
+
   } catch (error) {
     console.error(error);
     return NextResponse.json({error:"error",status:400});

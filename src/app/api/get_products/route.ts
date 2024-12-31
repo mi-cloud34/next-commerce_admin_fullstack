@@ -7,8 +7,7 @@ const  GET=async(req:NextRequest,res:NextResponse)=>{
   const { searchParams } = new URL(req.url);
   const categoryId = searchParams.get('categoryId');
   const searchTerm = searchParams.get("q");
-  // Filtreleme için whereClause'u dinamik olarak oluşturuyoruz
-
+ 
     try {
         await connectMongoDb()
 /* if (!categoryId&&categoryId==null) {
@@ -30,7 +29,7 @@ if (categoryId) {
     
   }
  else {
-  products = await Product.find(); // Tüm ürünleri getir
+  products = await Product.find();
 }
         
     return NextResponse.json(products)

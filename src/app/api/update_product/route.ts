@@ -10,19 +10,19 @@ export async function PUT(request: NextRequest) {
 
     console.log("body", body);
 
-    // Tüm gerekli alanların dolu olduğundan emin olun
+   
     if (!_id || !name || !description || !categoryId || !brand || !price || !inStock || !rating) {
       return NextResponse.json({ msg: "Missing required fields" }, { status: 400 });
     }
 
-    // `categoryId` ve `_id` değerlerini ObjectId olarak ayarlayın
+  
     const productObjectId = new ObjectId(_id);
     const categoryObjectId = new ObjectId(categoryId);
 
-    // Veritabanına bağlan
+   
     await connectMongoDb();
 
-    // Güncelleme işlemi
+    
     const updatedProduct = await Product.findByIdAndUpdate(
       productObjectId,
       {
@@ -36,7 +36,7 @@ export async function PUT(request: NextRequest) {
           rating,
         },
       },
-      { new: true } // Güncellenmiş belgeyi döndür
+      { new: true } 
     );
 
     if (!updatedProduct) {
