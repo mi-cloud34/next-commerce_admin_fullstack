@@ -10,11 +10,11 @@ const columns: GridColDef[] = [
 ];
 
 const Users = () => {
-
   const isLoading = false;
-  const isError=false;
+  const isError = false;
  
-  const users:UserType={
+  const users: UserType = {
+    _id: "", 
     name: "",
     email: "",
     surname: "",
@@ -28,6 +28,7 @@ const Users = () => {
     verifyToken: "",
     verifyTokenExpiry: new Date(),
   };
+
   if (isLoading) {
     return <div className="py-4">Loading...</div>;
   }
@@ -42,7 +43,6 @@ const Users = () => {
     <div className="flex flex-col">
       <Header name="Users" />
       <DataGrid
-       
         columns={columns}
         getRowId={(row) => row.userId}
         checkboxSelection

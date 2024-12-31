@@ -1,9 +1,9 @@
 
-            import { NextApiRequest, NextApiResponse } from "next";
-            import { NextResponse } from "next/server";
+            
+            import { NextRequest, NextResponse } from "next/server";
             import { serialize } from "cookie";
             
-            export async function POST(req: NextApiRequest, res: NextApiResponse) {
+            export async function POST(req: NextRequest, res: NextResponse) {
               try {
                
                 const cookie = serialize("token", "", {

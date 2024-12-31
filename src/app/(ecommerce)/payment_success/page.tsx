@@ -13,7 +13,7 @@ const SuccessfulPayment = () => {
 
   useEffect(() => {
     dispatch(removeCart()); 
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="h-screen flex flex-col justify-center items-center gap-5">

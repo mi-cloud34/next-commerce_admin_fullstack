@@ -131,7 +131,7 @@ const LoginClient = () => {
         </div>
         <div className="px-8 py-4 bg-white bg-opacity-50 flex justify-center">
           <p className="text-sm text-gray-400">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Button
               onClick={() => router.push("/register")}
               className="text-indigo-400 hover:underline"

@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { motion } from "framer-motion";
@@ -44,7 +44,7 @@ const EmailVerificationPage = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     const verificationCode = code.join("");
     setIsLoading(true);
@@ -54,8 +54,6 @@ const EmailVerificationPage = () => {
       const res = await axios.post("/api/users/verify", { verificationCode });
       if (res.status === 200) {
         toast.success("Email verified successfully");
-        console.log("verificationCode: ", verificationCode);
-
         router.push("/");
       }
     } catch (err) {
@@ -64,14 +62,14 @@ const EmailVerificationPage = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [code, router]);
 
-  // Auto submit when all fields are filled
+  // useEffect with proper dependencies
   useEffect(() => {
     if (code.every((digit) => digit !== "")) {
       handleSubmit(new Event("submit") as unknown as React.FormEvent);
     }
-  }, [code]);
+  }, [code, handleSubmit]);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">

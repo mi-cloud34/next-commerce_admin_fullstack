@@ -16,18 +16,16 @@ import { addToBasketIncrease, removeFromCart } from "@/redux/Features/cartSlice"
 const CartClient = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const currentUser = useSelector(
-    (state: RootState) => state.user.currentUser
-  );
+  const currentUser = useSelector((state: RootState) => state.user.currentUser);
   const cartItems = useSelector((state: RootState) => state.cart.cartPrdcts);
    
   const total =cartItems?.reduce((total, item) => total + item.price * item.inStock, 0) || 0;
   const totalRounded = parseFloat(total.toFixed(2));
 
   const customer = {
-    id: currentUser?.data?.id,
-    email: currentUser?.data.email,
-    name: currentUser?.data?.name,
+    id: currentUser?._id,
+    email: currentUser?.email,
+    name: currentUser?.name,
   };
 console.log("currentUserCarttttttt", currentUser);
 
@@ -58,8 +56,8 @@ console.log("currentUserCarttttttt", currentUser);
           <p className="text-body-bold">No item in cart</p>
         ) : (
           <div>
-            {cartItems.map((cartItem) => (
-              <div className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between">
+            {cartItems.map((cartItem,index) => (
+              <div key={index} className="w-full flex max-sm:flex-col max-sm:gap-3 hover:bg-grey-1 px-4 py-3 items-center max-sm:items-start justify-between">
                 <div className="flex items-center">
                   <Image
                     src={cartItem.imgUrls[0]}
